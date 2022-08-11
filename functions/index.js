@@ -14,11 +14,11 @@ initializeApp({
 
 const db = getFirestore();
 
-app.get('/hello', (req, res) => {
+app.get('/api', (req, res) => {
     res.end("He recibido una peticion GET");
 });
 
-app.post('/hello', (req, res) => {
+app.post('/api', (req, res) => {
     db.collection('testing').add( req.body ).then(ref => {
         res.end("Se han almacenado los datos")
     }).catch(err => {
@@ -26,9 +26,9 @@ app.post('/hello', (req, res) => {
     });
 });
 
-app.post('/test',(req,res)=>{
-    res.end(req.body)
-})
+app.post('/api/test', (req,res)=>{
+    res.end(req.body);
+});
 
 
 exports.widgets = functions.https.onRequest(app);
