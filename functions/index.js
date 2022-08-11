@@ -12,7 +12,6 @@ initializeApp({
     credential: cert(privateKey)
 });
 
-
 const db = getFirestore();
 
 app.get('/hello', (req, res) => {
@@ -27,6 +26,9 @@ app.post('/hello', (req, res) => {
     });
 });
 
+app.post('/test',(req,res)=>{
+    res.end(req.body)
+})
 
 
 exports.widgets = functions.https.onRequest(app);
