@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const bodyparser =require('body-parser')
-app.use(bodyparser.urlencoded({ extended: true })); 
+
 
 app.use(cors({ origin: true }));
 const { initializeApp, cert } = require('firebase-admin/app');
@@ -22,7 +22,7 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/api', (req, res) => {
-    db.collection('testing').add( req.body ).then(ref => {
+    db.collection('testing').add( JSON.parse(req.body) ).then(ref => {
         res.end("Se han almacenado los datos")
     }).catch(err => {
         res.end(err)
