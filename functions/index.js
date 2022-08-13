@@ -22,6 +22,14 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/api', (req, res) => {
+    db.collection('testing').add( req.body ).then(ref => {
+        res.end("Se han almacenado los datos")
+    }).catch(err => {
+        res.end(err)
+    });
+});
+
+app.post('/api/raw', (req, res) => {
     db.collection('testing').add( JSON.parse(req.body) ).then(ref => {
         res.end("Se han almacenado los datos")
     }).catch(err => {
